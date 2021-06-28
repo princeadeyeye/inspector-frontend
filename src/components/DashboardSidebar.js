@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {
   Avatar,
   Box,
-  Button,
+  // Button,
   Divider,
   Drawer,
   Hidden,
@@ -12,13 +12,13 @@ import {
   Typography
 } from '@material-ui/core';
 import {
-  AlertCircle as AlertCircleIcon,
+  // AlertCircle as AlertCircleIcon,
   BarChart as BarChartIcon,
-  Lock as LockIcon,
+  // Lock as LockIcon,
   Settings as SettingsIcon,
   ShoppingBag as ShoppingBagIcon,
   User as UserIcon,
-  UserPlus as UserPlusIcon,
+  // UserPlus as UserPlusIcon,
   Users as UsersIcon
 } from 'react-feather';
 import NavItem from './NavItem';
@@ -36,40 +36,40 @@ const items = [
     title: 'Dashboard'
   },
   {
+    href: '/app/account',
+    icon: UserIcon,
+    title: 'Account'
+  },
+  {
     href: '/app/customers',
     icon: UsersIcon,
-    title: 'Customers'
+    title: 'Personal Investigation'
   },
   {
     href: '/app/products',
     icon: ShoppingBagIcon,
-    title: 'Products'
-  },
-  {
-    href: '/app/account',
-    icon: UserIcon,
-    title: 'Account'
+    title: 'All Investigation'
   },
   {
     href: '/app/settings',
     icon: SettingsIcon,
     title: 'Settings'
   },
-  {
-    href: '/login',
-    icon: LockIcon,
-    title: 'Login'
-  },
-  {
-    href: '/register',
-    icon: UserPlusIcon,
-    title: 'Register'
-  },
-  {
-    href: '/404',
-    icon: AlertCircleIcon,
-    title: 'Error'
-  }
+  // {
+  //   href: '/login',
+  //   icon: LockIcon,
+  //   title: 'Login'
+  // },
+  // {
+  //   href: '/register',
+  //   icon: UserPlusIcon,
+  //   title: 'Register'
+  // },
+  // {
+  //   href: '/404',
+  //   icon: AlertCircleIcon,
+  //   title: 'Error'
+  // }
 ];
 
 const DashboardSidebar = ({ onMobileClose, openMobile }) => {
@@ -133,7 +133,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           ))}
         </List>
       </Box>
-      <Box sx={{ flexGrow: 1 }} />
+      {/* <Box sx={{ flexGrow: 1 }} />
       <Box
         sx={{
           backgroundColor: 'background.default',
@@ -170,13 +170,13 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
             See PRO version
           </Button>
         </Box>
-      </Box>
+      </Box> */}
     </Box>
   );
 
   return (
     <>
-      <Hidden lgUp>
+      <Hidden mdUp>
         <Drawer
           anchor="left"
           onClose={onMobileClose}
@@ -191,7 +191,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           {content}
         </Drawer>
       </Hidden>
-      <Hidden lgDown>
+      <Hidden mdDown>
         <Drawer
           anchor="left"
           open

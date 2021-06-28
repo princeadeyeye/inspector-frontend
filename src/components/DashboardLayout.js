@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { experimentalStyled } from '@material-ui/core';
 import DashboardNavbar from './DashboardNavbar';
 import DashboardSidebar from './DashboardSidebar';
+import { getProfile } from '../actions/userProfile-actions';
 
 const DashboardLayoutRoot = experimentalStyled('div')(
   ({ theme }) => ({
@@ -20,7 +22,7 @@ const DashboardLayoutWrapper = experimentalStyled('div')(
     flex: '1 1 auto',
     overflow: 'hidden',
     paddingTop: 64,
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up('md')]: {
       paddingLeft: 256
     }
   })
@@ -40,6 +42,21 @@ const DashboardLayoutContent = experimentalStyled('div')({
 
 const DashboardLayout = () => {
   const [isMobileNavOpen, setMobileNavOpen] = useState(false);
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.global);
+  const { profile, loadingProfile } = useSelector((state) => state.userProfile);
+  console.log(profile, loadingProfile, 'profile');
+
+  const fetchProfileDetails = () => {
+    dispatch(getProfile());
+  };
+  useEffect(() => {
+    if (!user)navigate('/login');
+    else fetchProfileDetails();
+    // fetch user details
+  }, []);
 
   return (
     <DashboardLayoutRoot>
