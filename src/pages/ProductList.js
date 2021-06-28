@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 import CustomerListResults from 'src/components/customer/InvestigationListResults';
 import CustomerListToolbar from 'src/components/customer/InvestigationListToolbar';
-import customers from 'src/__mocks__/customers';
+import investigations from 'src/__mocks__/customers';
 // import ProductListToolbar from 'src/components/product/ProductListToolbar';
 // import ProductCard from 'src/components/product//ProductCard';
 // import products from 'src/__mocks__/products';
@@ -27,7 +27,7 @@ const ProductList = () => (
       <Container maxWidth={false}>
         <CustomerListToolbar />
         <Box sx={{ pt: 3 }}>
-          <CustomerListResults customers={customers} />
+          <CustomerListResults investigations={investigations} />
         </Box>
       </Container>
     </Box>
