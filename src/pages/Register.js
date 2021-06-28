@@ -1,4 +1,5 @@
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
@@ -12,9 +13,29 @@ import {
   TextField,
   Typography
 } from '@material-ui/core';
+import { register } from '../actions/register-actions';
 
 const Register = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  // const [values, setValues] = useState({
+  //   email: '',
+  //   password: '',
+  //   inspector_name: '',
+  // });
+
+  // const handleInputChange = (event) => {
+  //   setValues({
+  //     ...values,
+  //     [event.target.name]: event.target.value
+  //   });
+  // };
+
+  // const handleFormSubmit = async (e) => {
+  //   e.preventDefault();
+  //   const reg = await dispatch(register(values));
+  //   if (reg) navigate('/app/dashboard');
+  // };
 
   return (
     <>
@@ -34,22 +55,22 @@ const Register = () => {
           <Formik
             initialValues={{
               email: '',
-              firstName: '',
-              lastName: '',
+              inspector_name: '',
               password: '',
               policy: false
             }}
             validationSchema={
               Yup.object().shape({
                 email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                firstName: Yup.string().max(255).required('First name is required'),
-                lastName: Yup.string().max(255).required('Last name is required'),
+                inspector_name: Yup.string().max(255).required('Inspector name is required'),
                 password: Yup.string().max(255).required('password is required'),
                 policy: Yup.boolean().oneOf([true], 'This field must be checked')
               })
             }
-            onSubmit={() => {
-              navigate('/app/dashboard', { replace: true });
+            onSubmit={(values) => {
+              // e.preventDefault();
+              const reg = dispatch(register(values));
+              if (reg) navigate('/login', { replace: true });
             }}
           >
             {({
@@ -62,7 +83,7 @@ const Register = () => {
               values
             }) => (
               <form onSubmit={handleSubmit}>
-                <Box sx={{ mb: 3 }}>
+                <Box sx={{ mb: 1 }}>
                   <Typography
                     color="textPrimary"
                     variant="h2"
@@ -78,18 +99,18 @@ const Register = () => {
                   </Typography>
                 </Box>
                 <TextField
-                  error={Boolean(touched.firstName && errors.firstName)}
+                  error={Boolean(touched.inspector_name && errors.inspector_name)}
                   fullWidth
-                  helperText={touched.firstName && errors.firstName}
-                  label="First name"
+                  helperText={touched.inspector_name && errors.inspector_name}
+                  label="Inspector Mike Okiro"
                   margin="normal"
-                  name="firstName"
+                  name="inspector_name"
                   onBlur={handleBlur}
                   onChange={handleChange}
-                  value={values.firstName}
+                  value={values.inspector_name}
                   variant="outlined"
                 />
-                <TextField
+                {/* <TextField
                   error={Boolean(touched.lastName && errors.lastName)}
                   fullWidth
                   helperText={touched.lastName && errors.lastName}
@@ -100,12 +121,12 @@ const Register = () => {
                   onChange={handleChange}
                   value={values.lastName}
                   variant="outlined"
-                />
+                /> */}
                 <TextField
                   error={Boolean(touched.email && errors.email)}
                   fullWidth
                   helperText={touched.email && errors.email}
-                  label="Email Address"
+                  label="mikeokiro@police.com"
                   margin="normal"
                   name="email"
                   onBlur={handleBlur}

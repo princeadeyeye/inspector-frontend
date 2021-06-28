@@ -81,13 +81,13 @@ const CustomerListResults = ({ customers, ...rest }) => {
                   />
                 </TableCell>
                 <TableCell>
-                  Name
+                  Investigator Name
                 </TableCell>
                 <TableCell>
-                  Email
+                  Investigator Email
                 </TableCell>
                 <TableCell>
-                  Location
+                  Investigator Location
                 </TableCell>
                 <TableCell>
                   Phone

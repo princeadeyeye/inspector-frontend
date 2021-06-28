@@ -21,8 +21,7 @@ const UserSignupSuccess = (data) => ({
 // };
 
 export const register = ({
-  checked,
-  bankCode,
+  privacy,
   ...user
 }) => async (dispatch) => {
   if (!navigator.onLine) {

@@ -1,10 +1,10 @@
-import React from 'react';
+import { useState } from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
@@ -12,6 +12,9 @@ import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import { useDispatch } from 'react-redux';
+
+import { login } from '../actions/login-actions';
 
 function Copyright() {
   return (
@@ -61,6 +64,27 @@ const useStyles = makeStyles((theme) => ({
 export default function SignInSide() {
   const classes = useStyles();
 
+  const [values, setValues] = useState({
+    email: '',
+    password: '',
+    checked: true
+  });
+
+  const dispatch = useDispatch();
+
+  // const handleCheckbox = (event) => {
+  //   const { name, checked } = event.target;
+  //   setValues({ ...values, [name]: checked });
+  // };
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setValues({ ...values, [name]: value });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await dispatch(login(values));
+  };
+
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -82,6 +106,8 @@ export default function SignInSide() {
               id="email"
               label="Email Address"
               name="email"
+              value={values.email}
+              onChange={handleChange}
               autoComplete="email"
               autoFocus
             />
@@ -94,18 +120,21 @@ export default function SignInSide() {
               label="Password"
               type="password"
               id="password"
+              onChange={handleChange}
+              value={values.password}
               autoComplete="current-password"
             />
-            <FormControlLabel
+            {/* <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
-            />
+            /> */}
             <Button
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={handleSubmit}
             >
               Sign In
             </Button>
@@ -116,7 +145,7 @@ export default function SignInSide() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/register" variant="body2">
                   Don&rsquo;t have an account? Sign Up
                 </Link>
               </Grid>

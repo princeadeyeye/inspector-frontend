@@ -12,7 +12,7 @@ import {
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
-const Sales = (props) => {
+const Reports = (props) => {
   const theme = useTheme();
 
   const data = {
@@ -98,7 +98,7 @@ const Sales = (props) => {
             Last 7 days
           </Button>
         )}
-        title="Latest Sales"
+        title="Latest Investigation Reports"
       />
       <Divider />
       <CardContent>
@@ -135,4 +135,4 @@ const Sales = (props) => {
   );
 };
 
-export default Sales;
+export default Reports;

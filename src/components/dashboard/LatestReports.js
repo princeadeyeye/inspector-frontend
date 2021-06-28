@@ -81,9 +81,9 @@ const orders = [
   }
 ];
 
-const LatestOrders = (props) => (
+const LatestReports = (props) => (
   <Card {...props}>
-    <CardHeader title="Latest Orders" />
+    <CardHeader title="Latest Reports" />
     <Divider />
     <PerfectScrollbar>
       <Box sx={{ minWidth: 800 }}>
@@ -91,10 +91,10 @@ const LatestOrders = (props) => (
           <TableHead>
             <TableRow>
               <TableCell>
-                Order Ref
+                Report ID
               </TableCell>
               <TableCell>
-                Customer
+                Investigator Name
               </TableCell>
               <TableCell sortDirection="desc">
                 <Tooltip
@@ -161,4 +161,4 @@ const LatestOrders = (props) => (
   </Card>
 );
 
-export default LatestOrders;
+export default LatestReports;
