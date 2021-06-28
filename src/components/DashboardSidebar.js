@@ -16,7 +16,7 @@ import {
   BarChart as BarChartIcon,
   // Lock as LockIcon,
   Settings as SettingsIcon,
-  ShoppingBag as ShoppingBagIcon,
+  // ShoppingBag as ShoppingBagIcon,
   User as UserIcon,
   UserPlus as UserPlusIcon,
   Users as UsersIcon
@@ -46,15 +46,15 @@ const items = [
     title: 'Create Investigation'
   },
   {
-    href: '/app/customers',
+    href: '/app/investigations',
     icon: UsersIcon,
     title: 'Personal Investigation'
   },
-  {
-    href: '/app/products',
-    icon: ShoppingBagIcon,
-    title: 'All Investigation'
-  },
+  // {
+  //   href: '/app/products',
+  //   icon: ShoppingBagIcon,
+  //   title: 'All Investigation'
+  // },
   {
     href: '/app/settings',
     icon: SettingsIcon,

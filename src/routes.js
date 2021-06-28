@@ -17,7 +17,7 @@ const routes = [
     element: <DashboardLayout />,
     children: [
       { path: 'account', element: <Account /> },
-      { path: 'customers', element: <CustomerList /> },
+      { path: 'investigations', element: <CustomerList /> },
       { path: 'dashboard', element: <Dashboard /> },
       { path: 'crinvestigation', element: <CreateInvestigation /> },
       { path: 'products', element: <ProductList /> },

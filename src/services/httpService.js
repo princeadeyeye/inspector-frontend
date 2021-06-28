@@ -8,13 +8,13 @@ export const tokenMiddleWare = () => {
   return getToken();
 };
 
-axios.defaults.withCredentials = true;
+// axios.defaults.withCredentials = true;
 const httpService = axios.create({
   baseURL: baseURLApi,
-  // headers: {
-  //   'Content-Type': 'application/json',
-  //   Authorization: tokenMiddleWare()
-  // }
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: tokenMiddleWare()
+  }
 });
 
 export default httpService;

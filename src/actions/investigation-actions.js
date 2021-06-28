@@ -104,6 +104,8 @@ export const fetchInvestigationById = (id) => async (dispatch) => {
 };
 
 export const createNewInvestigation = (values) => async (dispatch) => {
+  console.log(values);
+
   if (!navigator.onLine) {
     return toast.error('Please check your internet connection');
   }

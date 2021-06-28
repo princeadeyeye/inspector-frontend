@@ -14,7 +14,7 @@ const initialState = {
   investigations: [],
   investigation: null,
   loadingInv: false,
-  errorInv: false,
+  errorInv: null,
 };
 
 const investigationReducer = (state = initialState, action) => {
@@ -29,13 +29,13 @@ const investigationReducer = (state = initialState, action) => {
         ...state,
         investigations: action.data,
         loadingInv: false,
-        errorInv: false,
+        errorInv: null,
       };
     case GET_PERSONAL_INVESTIGATIONS:
       return {
         ...state,
         investigations: action.data,
-        errorInv: false,
+        errorInv: null,
         loadingInv: false
       };
     case CREATE_INVESTIGATION:
@@ -43,7 +43,7 @@ const investigationReducer = (state = initialState, action) => {
         ...state,
         investigation: action.data,
         loadingInv: false,
-        errorInv: false,
+        errorInv: null,
       };
     case GET_AN_INVESTIGATION:
       return {
@@ -69,7 +69,7 @@ const investigationReducer = (state = initialState, action) => {
       return {
         ...state,
         loadingInv: false,
-        errorInv: true,
+        errorInv: action.error,
       };
 
     default:

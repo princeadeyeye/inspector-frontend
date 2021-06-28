@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import {
-  Avatar,
+  // Avatar,
   Box,
   Card,
   Checkbox,
@@ -15,43 +15,43 @@ import {
   TableRow,
   Typography
 } from '@material-ui/core';
-import getInitials from 'src/utils/getInitials';
+// import getInitials from 'src/utils/getInitials';
 
-const CustomerListResults = ({ investigations, ...rest }) => {
-  const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
+const InvestigationListResults = ({ investigations, ...rest }) => {
+  const [selectedInvestigationIds, setSelectedInvestigationIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
 
   const handleSelectAll = (event) => {
-    let newSelectedCustomerIds;
+    let newSelectedInvestigationIds;
 
     if (event.target.checked) {
-      newSelectedCustomerIds = investigations.map((customer) => customer.id);
+      newSelectedInvestigationIds = investigations.map((Investigation) => Investigation.id);
     } else {
-      newSelectedCustomerIds = [];
+      newSelectedInvestigationIds = [];
     }
 
-    setSelectedCustomerIds(newSelectedCustomerIds);
+    setSelectedInvestigationIds(newSelectedInvestigationIds);
   };
 
   const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedCustomerIds.indexOf(id);
-    let newSelectedCustomerIds = [];
+    const selectedIndex = selectedInvestigationIds.indexOf(id);
+    let newSelectedInvestigationIds = [];
 
     if (selectedIndex === -1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds, id);
+      newSelectedInvestigationIds = newSelectedInvestigationIds.concat(selectedInvestigationIds, id);
     } else if (selectedIndex === 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(1));
-    } else if (selectedIndex === selectedCustomerIds.length - 1) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(selectedCustomerIds.slice(0, -1));
+      newSelectedInvestigationIds = newSelectedInvestigationIds.concat(selectedInvestigationIds.slice(1));
+    } else if (selectedIndex === selectedInvestigationIds.length - 1) {
+      newSelectedInvestigationIds = newSelectedInvestigationIds.concat(selectedInvestigationIds.slice(0, -1));
     } else if (selectedIndex > 0) {
-      newSelectedCustomerIds = newSelectedCustomerIds.concat(
-        selectedCustomerIds.slice(0, selectedIndex),
-        selectedCustomerIds.slice(selectedIndex + 1)
+      newSelectedInvestigationIds = newSelectedInvestigationIds.concat(
+        selectedInvestigationIds.slice(0, selectedIndex),
+        selectedInvestigationIds.slice(selectedIndex + 1)
       );
     }
 
-    setSelectedCustomerIds(newSelectedCustomerIds);
+    setSelectedInvestigationIds(newSelectedInvestigationIds);
   };
 
   const handleLimitChange = (event) => {
@@ -71,11 +71,11 @@ const CustomerListResults = ({ investigations, ...rest }) => {
               <TableRow>
                 <TableCell padding="checkbox">
                   <Checkbox
-                    checked={selectedCustomerIds.length === investigations.length}
+                    checked={selectedInvestigationIds.length === investigations.length}
                     color="primary"
                     indeterminate={
-                      selectedCustomerIds.length > 0
-                      && selectedCustomerIds.length < investigations.length
+                      selectedInvestigationIds.length > 0
+                      && selectedInvestigationIds.length < investigations.length
                     }
                     onChange={handleSelectAll}
                   />
@@ -87,7 +87,7 @@ const CustomerListResults = ({ investigations, ...rest }) => {
                   Investigator Email
                 </TableCell>
                 <TableCell>
-                  Investigator Location
+                  Investigator Data
                 </TableCell>
                 <TableCell>
                   Phone
@@ -98,16 +98,16 @@ const CustomerListResults = ({ investigations, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {investigations.slice(0, limit).map((customer) => (
+              {investigations.slice(0, limit).map((Investigation) => (
                 <TableRow
                   hover
-                  key={customer.id}
-                  selected={selectedCustomerIds.indexOf(customer.id) !== -1}
+                  key={Investigation.id}
+                  selected={selectedInvestigationIds.indexOf(Investigation.id) !== -1}
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
-                      checked={selectedCustomerIds.indexOf(customer.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, customer.id)}
+                      checked={selectedInvestigationIds.indexOf(Investigation.id) !== -1}
+                      onChange={(event) => handleSelectOne(event, Investigation.id)}
                       value="true"
                     />
                   </TableCell>
@@ -118,31 +118,31 @@ const CustomerListResults = ({ investigations, ...rest }) => {
                         display: 'flex'
                       }}
                     >
-                      <Avatar
-                        src={customer.avatarUrl}
+                      {/* <Avatar
+                        src={Investigation.avatarUrl}
                         sx={{ mr: 2 }}
                       >
-                        {getInitials(customer.name)}
-                      </Avatar>
+                        {getInitials(Investigation.name)}
+                      </Avatar> */}
                       <Typography
                         color="textPrimary"
                         variant="body1"
                       >
-                        {customer.name}
+                        {Investigation.inspector_name}
                       </Typography>
                     </Box>
                   </TableCell>
                   <TableCell>
-                    {customer.email}
+                    {Investigation.email}
                   </TableCell>
                   <TableCell>
-                    {`${customer.address.city}, ${customer.address.state}, ${customer.address.country}`}
+                    {`${Investigation.investigation_data}`}
                   </TableCell>
                   <TableCell>
-                    {customer.phone}
+                    {Investigation.phone}
                   </TableCell>
                   <TableCell>
-                    {moment(customer.createdAt).format('DD/MM/YYYY')}
+                    {moment(Investigation.created).format('DD/MM/YYYY')}
                   </TableCell>
                 </TableRow>
               ))}
@@ -163,8 +163,8 @@ const CustomerListResults = ({ investigations, ...rest }) => {
   );
 };
 
-CustomerListResults.propTypes = {
+InvestigationListResults.propTypes = {
   investigations: PropTypes.array.isRequired
 };
 
-export default CustomerListResults;
+export default InvestigationListResults;
