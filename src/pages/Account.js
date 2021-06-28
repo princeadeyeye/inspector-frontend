@@ -4,46 +4,51 @@ import {
   Container,
   Grid
 } from '@material-ui/core';
+import { useSelector } from 'react-redux';
 import AccountProfile from 'src/components/account/AccountProfile';
 import AccountProfileDetails from 'src/components/account/AccountProfileDetails';
 
-const Account = () => (
-  <>
-    <Helmet>
-      <title>Account | Material Kit</title>
-    </Helmet>
-    <Box
-      sx={{
-        backgroundColor: 'background.default',
-        minHeight: '100%',
-        py: 3
-      }}
-    >
-      <Container maxWidth="lg">
-        <Grid
-          container
-          spacing={3}
-        >
+const Account = () => {
+  const { profile } = useSelector((state) => state.userProfile);
+
+  return (
+    <>
+      <Helmet>
+        <title>Officer Account</title>
+      </Helmet>
+      <Box
+        sx={{
+          backgroundColor: 'background.default',
+          minHeight: '100%',
+          py: 3
+        }}
+      >
+        <Container maxWidth="lg">
           <Grid
-            item
-            lg={4}
-            md={6}
-            xs={12}
+            container
+            spacing={3}
           >
-            <AccountProfile />
+            <Grid
+              item
+              lg={4}
+              md={6}
+              xs={12}
+            >
+              <AccountProfile profile={profile} />
+            </Grid>
+            <Grid
+              item
+              lg={8}
+              md={6}
+              xs={12}
+            >
+              <AccountProfileDetails profile={profile} />
+            </Grid>
           </Grid>
-          <Grid
-            item
-            lg={8}
-            md={6}
-            xs={12}
-          >
-            <AccountProfileDetails />
-          </Grid>
-        </Grid>
-      </Container>
-    </Box>
-  </>
-);
+        </Container>
+      </Box>
+    </>
+  );
+};
 
 export default Account;

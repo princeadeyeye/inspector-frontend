@@ -9,30 +9,30 @@ import {
   Grid,
   TextField
 } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const states = [
   {
-    value: 'alabama',
-    label: 'Alabama'
+    value: 'ogun',
+    label: 'Ogun'
   },
   {
-    value: 'new-york',
-    label: 'New York'
+    value: 'oyo',
+    label: 'Oyo'
   },
   {
-    value: 'san-francisco',
-    label: 'San Francisco'
+    value: 'lagos',
+    label: 'Lagos'
   }
 ];
 
-const AccountProfileDetails = (props) => {
+const AccountProfileDetails = ({ profile }) => {
   const [values, setValues] = useState({
-    firstName: 'Katarina',
-    lastName: 'Smith',
-    email: 'demo@devias.io',
+    inspector_name: profile.name,
+    email: profile.email,
     phone: '',
-    state: 'Alabama',
-    country: 'USA'
+    state: 'Lagos',
+    country: 'Nigeria'
   });
 
   const handleChange = (event) => {
@@ -46,7 +46,6 @@ const AccountProfileDetails = (props) => {
     <form
       autoComplete="off"
       noValidate
-      {...props}
     >
       <Card>
         <CardHeader
@@ -68,14 +67,14 @@ const AccountProfileDetails = (props) => {
                 fullWidth
                 helperText="Please specify the first name"
                 label="First name"
-                name="firstName"
+                name="inspector_name"
                 onChange={handleChange}
                 required
-                value={values.firstName}
+                value={values.inspector_name}
                 variant="outlined"
               />
             </Grid>
-            <Grid
+            {/* <Grid
               item
               md={6}
               xs={12}
@@ -89,7 +88,7 @@ const AccountProfileDetails = (props) => {
                 value={values.lastName}
                 variant="outlined"
               />
-            </Grid>
+            </Grid> */}
             <Grid
               item
               md={6}
@@ -182,5 +181,7 @@ const AccountProfileDetails = (props) => {
     </form>
   );
 };
-
+AccountProfileDetails.propTypes = {
+  profile: PropTypes.object
+};
 export default AccountProfileDetails;

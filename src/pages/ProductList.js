@@ -5,8 +5,8 @@ import {
   // Grid,
   // Pagination
 } from '@material-ui/core';
-import CustomerListResults from 'src/components/customer/CustomerListResults';
-import CustomerListToolbar from 'src/components/customer/CustomerListToolbar';
+import CustomerListResults from 'src/components/customer/InvestigationListResults';
+import CustomerListToolbar from 'src/components/customer/InvestigationListToolbar';
 import customers from 'src/__mocks__/customers';
 // import ProductListToolbar from 'src/components/product/ProductListToolbar';
 // import ProductCard from 'src/components/product//ProductCard';

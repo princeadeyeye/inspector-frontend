@@ -47,7 +47,6 @@ const DashboardLayout = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.global);
   const { profile, loadingProfile } = useSelector((state) => state.userProfile);
-  console.log(profile, loadingProfile, 'profile');
 
   const fetchProfileDetails = () => {
     dispatch(getProfile());

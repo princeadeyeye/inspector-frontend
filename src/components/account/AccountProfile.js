@@ -9,9 +9,10 @@ import {
   Divider,
   Typography
 } from '@material-ui/core';
+import PropTypes from 'prop-types';
 
 const user = {
-  avatar: '/static/images/avatars/avatar_6.png',
+  avatar: '/static/images/avatars/avatar_.png',
   city: 'Los Angeles',
   country: 'USA',
   jobTitle: 'Senior Developer',
@@ -19,8 +20,8 @@ const user = {
   timezone: 'GTM-7'
 };
 
-const AccountProfile = (props) => (
-  <Card {...props}>
+const AccountProfile = ({ profile }) => (
+  <Card>
     <CardContent>
       <Box
         sx={{
@@ -41,19 +42,19 @@ const AccountProfile = (props) => (
           gutterBottom
           variant="h3"
         >
-          {user.name}
+          {profile.name}
         </Typography>
         <Typography
           color="textSecondary"
           variant="body1"
         >
-          {`${user.city} ${user.country}`}
+          {`${profile.city ? profile.city : 'Lagos'} ${profile.country ? profile.country : 'Nigeria'}`}
         </Typography>
         <Typography
           color="textSecondary"
           variant="body1"
         >
-          {`${moment().format('hh:mm A')} ${user.timezone}`}
+          {`${moment().format('hh:mm A')} ${'GTM+1'}`}
         </Typography>
       </Box>
     </CardContent>
@@ -69,5 +70,9 @@ const AccountProfile = (props) => (
     </CardActions>
   </Card>
 );
+
+AccountProfile.propTypes = {
+  profile: PropTypes.object
+};
 
 export default AccountProfile;
