@@ -42,7 +42,7 @@ export const login = (User) => async (dispatch) => {
     dispatch(loginSuccess(data.data));
     dispatch(authSuccess(data.data));
     console.log(data, 'login-action-data');
-    const accessToken = data.data.token;
+    const accessToken = `Bearer ${data.token}`;
     setToken(accessToken);
     toast.success('Successfully Login');
     // dispatch(loadEnd());
@@ -54,6 +54,7 @@ export const login = (User) => async (dispatch) => {
       dispatch(loginError(data.error));
       toast.error(data.error);
     } else {
+      console.log(error, 'error');
       toast.error('Try again');
     }
     // dispatch(loadEnd());
@@ -67,7 +68,7 @@ export const logout = () => async (dispatch) => {
     await http.post('auth/logout');
     dispatch(logoutSuccess());
     toast.success('Successfully Logout');
-    redirect('/signin');
+    redirect('/login');
     dispatch(authRemove());
     dispatch(loadEnd());
     return true;

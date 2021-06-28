@@ -72,8 +72,9 @@ const items = [
   // }
 ];
 
-const DashboardSidebar = ({ onMobileClose, openMobile }) => {
+const DashboardSidebar = ({ onMobileClose, openMobile, profile }) => {
   const location = useLocation();
+  console.log(profile, 'profile');
 
   useEffect(() => {
     if (openMobile && onMobileClose) {
@@ -99,7 +100,7 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
       >
         <Avatar
           component={RouterLink}
-          src={user.avatar}
+          src={user.avatar2}
           sx={{
             cursor: 'pointer',
             width: 64,
@@ -111,13 +112,13 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
           color="textPrimary"
           variant="h5"
         >
-          {user.name}
+          {profile.name}
         </Typography>
         <Typography
           color="textSecondary"
           variant="body2"
         >
-          {user.jobTitle}
+          {profile.jobTitle ? profile.jobTitle : 'Police Officer'}
         </Typography>
       </Box>
       <Divider />
@@ -213,7 +214,8 @@ const DashboardSidebar = ({ onMobileClose, openMobile }) => {
 
 DashboardSidebar.propTypes = {
   onMobileClose: PropTypes.func,
-  openMobile: PropTypes.bool
+  openMobile: PropTypes.bool,
+  profile: PropTypes.object
 };
 
 DashboardSidebar.defaultProps = {

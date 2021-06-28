@@ -7,6 +7,8 @@ export const tokenMiddleWare = () => {
   if (token && Date.now() >= token.exp * 1000) return removeKeys();
   return getToken();
 };
+
+axios.defaults.withCredentials = true;
 const httpService = axios.create({
   baseURL: baseURLApi,
   headers: {
