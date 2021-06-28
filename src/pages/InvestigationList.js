@@ -2,9 +2,9 @@ import { Helmet } from 'react-helmet';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Box, Container } from '@material-ui/core';
-import InvestigationListResults from 'src/components/customer/InvestigationListResults';
-import InvestigationListToolbar from 'src/components/customer/InvestigationListToolbar';
-import investigations from 'src/__mocks__/customers';
+import InvestigationListResults from 'src/components/investigation/InvestigationListResults';
+import InvestigationListToolbar from 'src/components/investigation/InvestigationListToolbar';
+import investigations from 'src/__mocks__/investigations';
 
 const InvestigationList = () => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const InvestigationList = () => {
   return (
     <>
       <Helmet>
-        <title>User Investigation Data</title>
+        <title>All Investigation Data</title>
       </Helmet>
       <Box
         sx={{

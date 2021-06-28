@@ -11,10 +11,10 @@ export const tokenMiddleWare = () => {
 axios.defaults.withCredentials = true;
 const httpService = axios.create({
   baseURL: baseURLApi,
-  headers: {
-    'Content-Type': 'application/json',
-    Authorization: tokenMiddleWare()
-  }
+  // headers: {
+  //   'Content-Type': 'application/json',
+  //   Authorization: tokenMiddleWare()
+  // }
 });
 
 export default httpService;

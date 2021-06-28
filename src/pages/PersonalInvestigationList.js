@@ -5,9 +5,9 @@ import {
   // Grid,
   // Pagination
 } from '@material-ui/core';
-import CustomerListResults from 'src/components/customer/InvestigationListResults';
-import CustomerListToolbar from 'src/components/customer/InvestigationListToolbar';
-import investigations from 'src/__mocks__/customers';
+import InvestigationListResults from 'src/components/investigation/InvestigationListResults';
+import InvestigationListToolbar from 'src/components/investigation/InvestigationListToolbar';
+import investigations from 'src/__mocks__/investigations';
 // import ProductListToolbar from 'src/components/product/ProductListToolbar';
 // import ProductCard from 'src/components/product//ProductCard';
 // import products from 'src/__mocks__/products';
@@ -15,7 +15,7 @@ import investigations from 'src/__mocks__/customers';
 const ProductList = () => (
   <>
     <Helmet>
-      <title>All Investigation Data </title>
+      <title>Personal Investigation Data </title>
     </Helmet>
     <Box
       sx={{
@@ -25,9 +25,9 @@ const ProductList = () => (
       }}
     >
       <Container maxWidth={false}>
-        <CustomerListToolbar />
+        <InvestigationListToolbar />
         <Box sx={{ pt: 3 }}>
-          <CustomerListResults investigations={investigations} />
+          <InvestigationListResults investigations={investigations} />
         </Box>
       </Container>
     </Box>

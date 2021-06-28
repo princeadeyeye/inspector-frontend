@@ -5,7 +5,7 @@
     "browser": true
   },
   "extends": [
-    "airbnb"
+  
   ],
   "settings": {
     "import/resolver": {

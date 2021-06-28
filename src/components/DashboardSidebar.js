@@ -18,7 +18,7 @@ import {
   Settings as SettingsIcon,
   ShoppingBag as ShoppingBagIcon,
   User as UserIcon,
-  // UserPlus as UserPlusIcon,
+  UserPlus as UserPlusIcon,
   Users as UsersIcon
 } from 'react-feather';
 import NavItem from './NavItem';
@@ -41,6 +41,11 @@ const items = [
     title: 'Account'
   },
   {
+    href: '/app/crinvestigation',
+    icon: UserPlusIcon,
+    title: 'Create Investigation'
+  },
+  {
     href: '/app/customers',
     icon: UsersIcon,
     title: 'Personal Investigation'
@@ -55,11 +60,6 @@ const items = [
     icon: SettingsIcon,
     title: 'Settings'
   },
-  // {
-  //   href: '/login',
-  //   icon: LockIcon,
-  //   title: 'Login'
-  // },
   // {
   //   href: '/register',
   //   icon: UserPlusIcon,

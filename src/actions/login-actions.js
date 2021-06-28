@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import {
-  setToken, removeKeys
+  removeKeys
 } from '../services/jwtService';
 import http from '../services/httpService';
 import { loadEnd, authSuccess, authRemove } from './global-actions';
@@ -42,8 +42,8 @@ export const login = (User) => async (dispatch) => {
     dispatch(loginSuccess(data.data));
     dispatch(authSuccess(data.data));
     console.log(data, 'login-action-data');
-    const accessToken = `Bearer ${data.token}`;
-    setToken(accessToken);
+    // const accessToken = `Bearer ${data.token}`;
+    // setToken(accessToken);
     toast.success('Successfully Login');
     // dispatch(loadEnd());
     redirect('/app/dashboard');
