@@ -34,7 +34,7 @@ const InvestigationList = () => {
         <Container maxWidth={false}>
           <InvestigationListToolbar />
           <Box sx={{ pt: 3 }}>
-            <InvestigationListResults investigations={investigations.data} />
+            <InvestigationListResults investigations={investigations.data ? investigations.data : []} />
           </Box>
         </Container>
       </Box>
