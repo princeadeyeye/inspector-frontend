@@ -34,11 +34,10 @@ contract Investigation {
     return lastInvestigation;
   }
 
-   function getInvestigations(address unique_id) public returns (investigationInfo[] memory) {
+   function getInvestigations(address unique_id) public view returns (investigationInfo[] memory) {
             console.log("getting personal investigation from", unique_id);
-
-       personalInvestigations = investigations[unique_id];
-    return personalInvestigations;
+       return investigations[unique_id];
+    
   }
 
 //   function setGreeting(string memory _greeting) public {
@@ -57,7 +56,7 @@ function createInvestigation(investigationInfo memory data) public
         // // require(data.unique_id, "Investigation address must be included");
         // require(data.inspector_name.length > 0, "Investigator name must be included");
 
-        // investigations[data.unique_id].push(data);
+        investigations[data.unique_id].push(data);
         lastInvestigation = data;
     // console.log("successfully create an investigation");
     // return 'successfully create an investigation';

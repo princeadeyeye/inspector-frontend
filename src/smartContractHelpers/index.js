@@ -1,15 +1,14 @@
 import { ethers } from 'ethers'
-// import Greeter from './artifacts/contracts/Greeter.sol/Greeter.json'
 import Investigation from '../artifacts/contracts/Investigation.sol/Investigation.json'
 import Greeter from '../artifacts/contracts/Greeter.sol/Greeter.json'
 
-const investigationAddress = '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512';
+const investigationAddress = '0x3Aa5ebB10DC797CAC828524e59A333d0A371443c';
 
 async function requestAccount() {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
   }
 
-
+// TODOS
 //fetchAllInvestigationsfromBlockChain
   //fetchPersonalInvestigations
   //fetchInvestigationById
@@ -33,15 +32,6 @@ export async function fetchAllInvestigationsfromBlockChain() {
     }    
   }
   
-//   async function getBalance() {
-//     if (typeof window.ethereum !== 'undefined') {
-//       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
-//       const provider = new ethers.providers.Web3Provider(window.ethereum);
-//       const contract = new ethers.Contract(tokenAddress, Token.abi, provider)
-//       const balance = await contract.balanceOf(account);
-//       console.log("Balance: ", balance.toString());
-//     }
-//   }
 
   export async function createInvestigationBlock(investigationData) {
     if (!investigationData) return
@@ -57,8 +47,22 @@ export async function fetchAllInvestigationsfromBlockChain() {
       console.log("checking>>>>>>>>2>>>>>>>", contract, investigationData)
       const transaction = await contract.createInvestigation(investigationData)
       await transaction.wait()
-    //   fetchGreeting()
+      fetchLastInvestigation()
     }
+  }
+
+  async function fetchLastInvestigation() {
+    if (typeof window.ethereum !== 'undefined') {
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      console.log({ provider })
+      const contract = new ethers.Contract(investigationAddress, Investigation.abi, provider)
+      try {
+        const data = await contract.getLastInvestigation()
+        console.log('data: ', data)
+      } catch (err) {
+        console.log("Error: ", err)
+      }
+    }    
   }
 
 //   async function sendCoins() {
@@ -72,3 +76,12 @@ export async function fetchAllInvestigationsfromBlockChain() {
 //       console.log(`${amount} Coins successfully sent to ${userAccount}`);
 //     }
 // }
+//   async function getBalance() {
+//     if (typeof window.ethereum !== 'undefined') {
+//       const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+//       const provider = new ethers.providers.Web3Provider(window.ethereum);
+//       const contract = new ethers.Contract(tokenAddress, Token.abi, provider)
+//       const balance = await contract.balanceOf(account);
+//       console.log("Balance: ", balance.toString());
+//     }
+//   }
