@@ -25,3 +25,8 @@ yarn-debug.log*
 yarn-error.log*
 
 /.eslintrc
+node_modules
+
+#Hardhat files
+cache
+artifacts

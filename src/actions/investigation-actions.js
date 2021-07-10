@@ -2,6 +2,7 @@
 import { toast } from 'react-toastify';
 import http from '../services/httpService';
 import { loadStart, loadEnd } from './global-actions';
+import { createInvestigationBlock, fetchAllInvestigationsfromBlockChain } from '../smartContractHelpers';
 
 export const GET_ALL_INVESTIGATIONS = 'GET_ALL_INVESTIGATIONS';
 export const LOADING_INVESUGATION = 'LOADING_INVESUGATION';
@@ -53,6 +54,7 @@ export const fetchAllInvestigations = () => async (dispatch) => {
   }
   try {
     dispatch(loadingInv());
+    await fetchAllInvestigationsfromBlockChain()
     const { data } = await http.get('investigation/all');
     console.log(data);
     dispatch(getAllInvestigations(data));
@@ -72,6 +74,7 @@ export const fetchPersonalInvestigations = () => async (dispatch) => {
   }
   try {
     dispatch(loadingInv());
+    await fetchAllInvestigationsfromBlockChain()
     const { data } = await http.get('investigation/all');
     console.log(data);
     dispatch(getPersonalInvestigations(data));
@@ -111,6 +114,7 @@ export const createNewInvestigation = (values) => async (dispatch) => {
   }
   try {
     dispatch(loadingInv());
+    await createInvestigationBlock(values);
     const { data } = await http.post('investigation/create', values);
     dispatch(createInvestigation(data));
     toast.success('Successfully create investigations');
