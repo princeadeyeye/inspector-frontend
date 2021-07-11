@@ -1,79 +1,44 @@
 import { Helmet } from 'react-helmet';
-import {
-  Box,
-  Container,
-  // Grid,
-  // Pagination
-} from '@material-ui/core';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Box, Container } from '@material-ui/core';
 import InvestigationListResults from 'src/components/investigation/InvestigationListResults';
 import InvestigationListToolbar from 'src/components/investigation/InvestigationListToolbar';
-import investigations from 'src/__mocks__/investigations';
-// import ProductListToolbar from 'src/components/product/ProductListToolbar';
-// import ProductCard from 'src/components/product//ProductCard';
-// import products from 'src/__mocks__/products';
+import { fetchPersonalInvestigations } from 'src/actions/investigation-actions';
+// import investigations from 'src/__mocks__/investigations';
 
-const ProductList = () => (
-  <>
-    <Helmet>
-      <title>Personal Investigation Data </title>
-    </Helmet>
-    <Box
-      sx={{
-        backgroundColor: 'background.default',
-        minHeight: '100%',
-        py: 3
-      }}
-    >
-      <Container maxWidth={false}>
-        <InvestigationListToolbar />
-        <Box sx={{ pt: 3 }}>
-          <InvestigationListResults investigations={investigations} />
-        </Box>
-      </Container>
-    </Box>
-    {/* <Box
-      sx={{
-        backgroundColor: 'background.default',
-        minHeight: '100%',
-        py: 3
-      }}
-    >
-      <Container maxWidth={false}>
-        <ProductListToolbar />
-        <Box sx={{ pt: 3 }}>
-          <Grid
-            container
-            spacing={3}
-          >
-            {products.map((product) => (
-              <Grid
-                item
-                key={product.id}
-                lg={4}
-                md={6}
-                xs={12}
-              >
-                <ProductCard product={product} />
-              </Grid>
-            ))}
-          </Grid>
-        </Box>
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            pt: 3
-          }}
-        >
-          <Pagination
-            color="primary"
-            count={3}
-            size="small"
-          />
-        </Box>
-      </Container>
-    </Box> */}
-  </>
-);
-
-export default ProductList;
+const InvestigationList = () => {
+  const dispatch = useDispatch();
+  const { investigations, loadingInv } = useSelector((state) => state.investigationData);
+  console.log(loadingInv, investigations);
+  // const fetchInvestigations = () => {
+  // };
+  useEffect(() => {
+    dispatch(fetchPersonalInvestigations());
+    // if (!user)navigate('/login');
+    // else fetchProfileDetails();
+    // fetch user details
+  }, []);
+  return (
+    <>
+      <Helmet>
+        <title>All Investigation Data</title>
+      </Helmet>
+      <Box
+        sx={{
+          backgroundColor: 'background.default',
+          minHeight: '100%',
+          py: 3
+        }}
+      >
+        <Container maxWidth={false}>
+          <InvestigationListToolbar />
+          <Box sx={{ pt: 3 }}>
+            <InvestigationListResults investigations={investigations.data ? investigations.data : []} />
+          </Box>
+        </Container>
+      </Box>
+    </>
+  );
+};
+export default InvestigationList;

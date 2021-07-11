@@ -2,11 +2,11 @@ import { Navigate } from 'react-router-dom';
 import DashboardLayout from 'src/components/DashboardLayout';
 import MainLayout from 'src/components/MainLayout';
 import Account from 'src/pages/Account';
-import CustomerList from 'src/pages/InvestigationList';
+import InvestigationList from 'src/pages/InvestigationList';
 import Dashboard from 'src/pages/Dashboard';
 import Login from 'src/pages/Login';
 import NotFound from 'src/pages/NotFound';
-import ProductList from 'src/pages/PersonalInvestigationList';
+import PersonalList from 'src/pages/PersonalInvestigationList';
 import Register from 'src/pages/Register';
 import Settings from 'src/pages/Settings';
 import CreateInvestigation from 'src/pages/CreateInvestigation';
@@ -17,10 +17,10 @@ const routes = [
     element: <DashboardLayout />,
     children: [
       { path: 'account', element: <Account /> },
-      { path: 'investigations', element: <CustomerList /> },
+      { path: 'investigations', element: <InvestigationList /> },
       { path: 'dashboard', element: <Dashboard /> },
       { path: 'crinvestigation', element: <CreateInvestigation /> },
-      { path: 'products', element: <ProductList /> },
+      { path: 'pnlinvestigations', element: <PersonalList /> },
       { path: 'settings', element: <Settings /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]

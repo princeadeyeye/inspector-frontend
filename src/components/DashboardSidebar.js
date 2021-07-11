@@ -46,12 +46,12 @@ const items = [
     title: 'Create Investigation'
   },
   {
-    href: '/app/investigations',
+    href: '/app/pnlinvestigations',
     icon: UsersIcon,
     title: 'Personal Investigation'
   },
   // {
-  //   href: '/app/products',
+  //   href: '/app/investigations',
   //   icon: ShoppingBagIcon,
   //   title: 'All Investigation'
   // },

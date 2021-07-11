@@ -2,21 +2,21 @@ import { ethers } from 'ethers'
 import Investigation from '../artifacts/contracts/Investigation.sol/Investigation.json'
 import Greeter from '../artifacts/contracts/Greeter.sol/Greeter.json'
 
-const investigationAddress = '0x3Aa5ebB10DC797CAC828524e59A333d0A371443c';
+const investigationAddress = '0xF8b299F87EBb62E0b625eAF440B73Cc6b7717dbd';
 
 async function requestAccount() {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
   }
 
 // TODOS
-//fetchAllInvestigationsfromBlockChain
+//getPsnlInvestigationContract
   //fetchPersonalInvestigations
   //fetchInvestigationById
   //createNewInvestigation
   //updateInv
   //deleteInv
 
-export async function fetchAllInvestigationsfromBlockChain() {
+export async function getPsnlInvestigationContract() {
     if (typeof window.ethereum !== 'undefined') {
       const provider = new ethers.providers.Web3Provider(window.ethereum)
       // const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
@@ -25,13 +25,31 @@ export async function fetchAllInvestigationsfromBlockChain() {
       const contract = new ethers.Contract(investigationAddress, Investigation.abi, signer)
       try {
         const data = await contract.getInvestigations(investigationAddress)
-        console.log('data: ', data)
+        console.log('data: ', data);
+        return data;
       } catch (err) {
         console.log("Error: ", err)
       }
     }    
   }
-  
+
+  export async function getAllInvestigationContract() {
+    if (typeof window.ethereum !== 'undefined') {
+      const provider = new ethers.providers.Web3Provider(window.ethereum)
+      // const [account] = await window.ethereum.request({ method: 'eth_requestAccounts' })
+      const signer = provider.getSigner()
+      console.log({ provider })
+      const contract = new ethers.Contract(investigationAddress, Investigation.abi, signer)
+      try {
+        const data = await contract.getAll()
+        console.log('data: ', data)
+        return data;
+      } catch (err) {
+        console.log("Error: ", err)
+      }
+    }    
+  }
+
 
   export async function createInvestigationBlock(investigationData) {
     if (!investigationData) return

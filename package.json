@@ -8,6 +8,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "hardhat-local": "npx hardhat compile && npx hardhat run scripts/deploy.js --network localhost",
+    "ryby": "npx hardhat compile && npx hardhat run scripts/deploy.js --network ryby",
+    "goli": "npx hardhat compile && npx hardhat run scripts/deploy.js --network goli",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
