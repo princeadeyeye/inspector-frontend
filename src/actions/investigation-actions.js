@@ -2,6 +2,7 @@
 import { toast } from 'react-toastify';
 import http from '../services/httpService';
 import { loadStart, loadEnd } from './global-actions';
+import { createInvestigationBlock, getPsnlInvestigationContract, getAllInvestigationContract } from '../smartContractHelpers';
 
 export const GET_ALL_INVESTIGATIONS = 'GET_ALL_INVESTIGATIONS';
 export const LOADING_INVESUGATION = 'LOADING_INVESUGATION';
@@ -53,9 +54,10 @@ export const fetchAllInvestigations = () => async (dispatch) => {
   }
   try {
     dispatch(loadingInv());
+    const dataContract = await getAllInvestigationContract()
     const { data } = await http.get('investigation/all');
-    console.log(data);
-    dispatch(getAllInvestigations(data));
+    console.log(data, dataContract);
+    dispatch(getAllInvestigations({ data: dataContract }));
     toast.success('Successfully Fetched All investigations');
     dispatch(loadEnd());
     return true;
@@ -72,9 +74,10 @@ export const fetchPersonalInvestigations = () => async (dispatch) => {
   }
   try {
     dispatch(loadingInv());
+    const pnlData = await getPsnlInvestigationContract()
     const { data } = await http.get('investigation/all');
-    console.log(data);
-    dispatch(getPersonalInvestigations(data));
+    console.log(data, pnlData);
+    dispatch(getPersonalInvestigations({ data : pnlData }));
     toast.success('Successfully Fetched All investigations');
     dispatch(loadEnd());
     return true;
@@ -111,6 +114,7 @@ export const createNewInvestigation = (values) => async (dispatch) => {
   }
   try {
     dispatch(loadingInv());
+    await createInvestigationBlock(values);
     const { data } = await http.post('investigation/create', values);
     dispatch(createInvestigation(data));
     toast.success('Successfully create investigations');

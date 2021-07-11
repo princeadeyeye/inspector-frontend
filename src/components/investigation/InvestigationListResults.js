@@ -26,7 +26,7 @@ const InvestigationListResults = ({ investigations, ...rest }) => {
     let newSelectedInvestigationIds;
 
     if (event.target.checked) {
-      newSelectedInvestigationIds = investigations.map((Investigation) => Investigation.id);
+      newSelectedInvestigationIds = investigations.map((Investigation) => Investigation.unique_id);
     } else {
       newSelectedInvestigationIds = [];
     }
@@ -34,12 +34,12 @@ const InvestigationListResults = ({ investigations, ...rest }) => {
     setSelectedInvestigationIds(newSelectedInvestigationIds);
   };
 
-  const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedInvestigationIds.indexOf(id);
+  const handleSelectOne = (event, unique_id) => {
+    const selectedIndex = selectedInvestigationIds.indexOf(unique_id);
     let newSelectedInvestigationIds = [];
 
     if (selectedIndex === -1) {
-      newSelectedInvestigationIds = newSelectedInvestigationIds.concat(selectedInvestigationIds, id);
+      newSelectedInvestigationIds = newSelectedInvestigationIds.concat(selectedInvestigationIds, unique_id);
     } else if (selectedIndex === 0) {
       newSelectedInvestigationIds = newSelectedInvestigationIds.concat(selectedInvestigationIds.slice(1));
     } else if (selectedIndex === selectedInvestigationIds.length - 1) {
@@ -98,16 +98,16 @@ const InvestigationListResults = ({ investigations, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {investigations.slice(0, limit).map((Investigation) => (
+              {investigations.slice(0, limit).map((Investigation, i) => (
                 <TableRow
                   hover
-                  key={Investigation.id}
-                  selected={selectedInvestigationIds.indexOf(Investigation.id) !== -1}
+                  key={`${Investigation.unique_id}-${i}`}
+                  selected={selectedInvestigationIds.indexOf(Investigation.unique_id) !== -1}
                 >
                   <TableCell padding="checkbox">
                     <Checkbox
-                      checked={selectedInvestigationIds.indexOf(Investigation.id) !== -1}
-                      onChange={(event) => handleSelectOne(event, Investigation.id)}
+                      checked={selectedInvestigationIds.indexOf(Investigation.unique_id) !== -1}
+                      onChange={(event) => handleSelectOne(event, Investigation.unique_id)}
                       value="true"
                     />
                   </TableCell>
@@ -128,7 +128,7 @@ const InvestigationListResults = ({ investigations, ...rest }) => {
                         color="textPrimary"
                         variant="body1"
                       >
-                        {Investigation.inspector_name}
+                        {Investigation.inspector_name ? Investigation.inspector_name : Investigation['0']}
                       </Typography>
                     </Box>
                   </TableCell>
@@ -136,7 +136,7 @@ const InvestigationListResults = ({ investigations, ...rest }) => {
                     {Investigation.email}
                   </TableCell>
                   <TableCell>
-                    {`${Investigation.investigation_data}`}
+                    {`${Investigation.investigation_data ? Investigation.investigation_data : Investigation['1']}`}
                   </TableCell>
                   <TableCell>
                     {Investigation.phone}
