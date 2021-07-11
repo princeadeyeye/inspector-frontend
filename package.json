@@ -5,8 +5,8 @@
   "version": "1.0.0",
   "private": false,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npx hardhat compile && react-scripts start",
+    "build": "npx hardhat compile && react-scripts build",
     "hardhat-local": "npx hardhat compile && npx hardhat run scripts/deploy.js --network localhost",
     "ryby": "npx hardhat compile && npx hardhat run scripts/deploy.js --network ryby",
     "goli": "npx hardhat compile && npx hardhat run scripts/deploy.js --network goli",
